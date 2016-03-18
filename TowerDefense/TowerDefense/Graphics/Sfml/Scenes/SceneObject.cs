@@ -1,5 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.System;
+using System;
 
 namespace TowerDefense.Graphics.Sfml.Scenes
 {
@@ -98,25 +99,14 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             GraphicsManager.Graphics.DrawObject(text);
         }
 
-        public virtual void MouseUp(int x, int y) {
+        public Action<int, int> MouseUp;
+        public Action<int, int> MouseDown;
+        public Action<int, int> MouseMove;
 
-        }
+        public Action<string> KeyDown;
+        public Action<string> KeyUp;
 
-        public virtual void MouseDown(int x, int y) {
-
-        }
-
-        public virtual void MouseMove(int x, int y) {
-
-        }
-
-        public virtual void KeyDown(string key) {
-
-        }
-
-        public virtual void KeyUp(string key) {
-
-        }
+        
 
         public virtual string GetStringValue(string key) {
             return "";
