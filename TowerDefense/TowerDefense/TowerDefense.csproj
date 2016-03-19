@@ -69,6 +69,8 @@
     <Compile Include="Audio\Sfml\PlayingMusic.cs" />
     <Compile Include="Audio\Sfml\PlayingSound.cs" />
     <Compile Include="Data\DataManager.cs" />
+    <Compile Include="Data\Models\Entity.cs" />
+    <Compile Include="Data\Models\Position\Position.cs" />
     <Compile Include="Data\Models\Towers\TeslaTower.cs" />
     <Compile Include="Data\Models\Towers\Tower.cs" />
     <Compile Include="Data\Models\Towers\TowerDamageType.cs" />
