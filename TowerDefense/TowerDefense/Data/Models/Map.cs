@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TowerDefense.Data.Models.Towers;
 using TowerDefense.Data.Models.Viruses;
+using TowerDefense.Data.Models.Position;
 
 namespace TowerDefense.Data.Models
 {
@@ -15,6 +16,7 @@ namespace TowerDefense.Data.Models
         //private Virus[] viruses;
         private int tileSizeX;
         private int tileSizeY;
+        private Position.Position spawnLocation;
 
     }
 }
