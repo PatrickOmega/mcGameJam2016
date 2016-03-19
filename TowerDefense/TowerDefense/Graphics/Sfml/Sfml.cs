@@ -3,6 +3,7 @@ using SFML.Graphics;
 using SFML.Window;
 using System.Collections.Generic;
 using System.IO;
+using SFML.System;
 
 namespace TowerDefense.Graphics.Sfml
 {
@@ -100,6 +101,9 @@ namespace TowerDefense.Graphics.Sfml
             }
 
             // From this point onward, load graphics into their respective collections.
+            foreach (string file in Directory.GetFiles(GraphicsManager.TowerPath, "*.png")) {
+                this._surface[(int)SurfaceTypes.Tower].Add(new GraphicalSurface(file));
+            }
         }
 
         private void LoadFont() {
@@ -197,6 +201,28 @@ namespace TowerDefense.Graphics.Sfml
             return -1;
         }
         #endregion
+
+
+        private void RenderSample_DO_NOT_USE_THIS() {
+            // Load a surface of a certain type
+            var surface = GetSurface("generic", SurfaceTypes.Tower);
+
+            // Set the position on the screen.
+            surface.Position = new Vector2f(100, 100);
+
+            // Resize the surface.
+            surface.Scale = new Vector2f(1, 1);
+
+            // Rotate the surface.
+            surface.Rotation = 1.0f;
+
+            // Set a color overlay on the surface.
+            surface.Color = Color.Green;
+
+            // Draw the surface.
+            DrawObject(surface);
+        }
+
 
         private void DrawGame() {
             // All logic pertaining to drawing the game goes here.
