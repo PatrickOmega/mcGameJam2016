@@ -99,14 +99,32 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             GraphicsManager.Graphics.DrawObject(text);
         }
 
-        public Action<int, int> MouseUp;
-        public Action<int, int> MouseDown;
-        public Action<int, int> MouseMove;
+        public Action<int, int> OnMouseUp;
+        public Action<int, int> OnMouseDown;
+        public Action<int, int> OnMouseMove;
 
-        public Action<string> KeyDown;
-        public Action<string> KeyUp;
+        public Action<string> OnKeyDown;
+        public Action<string> OnKeyUp;
 
-        
+        public virtual void MouseUp(int x, int y) {
+            OnMouseUp?.Invoke(x, y);
+        }
+
+        public virtual void MouseDown(int x, int y) {
+            OnMouseDown?.Invoke(x, y);
+        }
+
+        public virtual void MouseMove(int x, int y) {
+            OnMouseMove?.Invoke(x, y);
+        }
+
+        public virtual void KeyDown(string key) {
+            this.OnKeyDown?.Invoke(key);
+        }
+
+        public virtual void KeyUp(string key) {
+            this.OnKeyUp?.Invoke(key);
+        }
 
         public virtual string GetStringValue(string key) {
             return "";
