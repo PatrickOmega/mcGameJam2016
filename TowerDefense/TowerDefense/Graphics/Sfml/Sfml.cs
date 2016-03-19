@@ -60,7 +60,6 @@ namespace TowerDefense.Graphics.Sfml
             // Create a new scene system to handle the events.
             this.SceneSystem = new SceneSystem();
 
-
             // For mouse related events, just pass off the coords to the scene system.
             this.DrawingSurface.MouseButtonPressed += (sender, e) => {
                 this.SceneSystem.MouseDown(e.Button.ToString().ToLower(), e.X, e.Y);
