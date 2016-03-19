@@ -62,6 +62,9 @@ namespace TowerDefense.Graphics.Sfml.Scenes.Objects
         public override void MouseDown(int x, int y) {
             // When we click on the object, inverse the checked state.
             this.Checked = !this.Checked;
+
+            // Invoke the player defined event.
+            this.OnMouseDown.Invoke(x, y);
         }
 
         public override bool GetBoolValue(string key) {
