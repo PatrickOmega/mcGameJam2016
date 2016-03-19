@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace TowerDefense.Data.Models.Towers
 {
-    class TeslaTower : Tower
+    class WaveTower : Tower
     {
-        public TeslaTower()
+        public WaveTower()
         {
-            this.towerType = TowerType.TESLA;
-            this.cost = 50;
+            this.towerType = TowerType.WAVE;
+            this.cost = 60;
             this.damage = 5;
-            this.attackSpeed = 1000;
-            this.range = 10;
-            this.damageType = TowerDamageType.SINGLE;
+            this.attackSpeed = 1500;
+            this.range = 8;
+            this.damageType = TowerDamageType.SPLASH;
             this.virusType = Viruses.VirusType.GROUND;
             this.level = 1;
-            this.upgradeCost = 75;
+            this.upgradeCost = 95;
         }
 
         public override void upgrade()
         {
-            this.damage += 5;
+            this.damage += 4;
             this.level++;
-            this.upgradeCost += 75;
+            this.upgradeCost += 100;
         }
     }
 }

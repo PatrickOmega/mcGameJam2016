@@ -12,6 +12,6 @@ namespace TowerDefense.Data.Models.Towers
     /// Author - Patrick Nicoll
     /// Version - Mar. 18, 2016
     /// </summary>
-    public enum TowerType { TESLA, TYPEB, TYPEC, TYPED}
+    public enum TowerType { TESLA, WAVE, TYPEC, TYPED}
    
 }
