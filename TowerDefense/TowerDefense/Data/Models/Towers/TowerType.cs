@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TowerDefense.Data.Models.Towers
+﻿namespace TowerDefense.Data.Models.Towers
 {
     /// <summary>
     /// Defines types of towers available for the player to deploy.
@@ -12,6 +6,11 @@ namespace TowerDefense.Data.Models.Towers
     /// Author - Patrick Nicoll
     /// Version - Mar. 18, 2016
     /// </summary>
-    public enum TowerType { TESLA, WAVE, TYPEC, TYPED}
+    public enum TowerType {
+        TESLA,
+        WAVE,
+        TYPEC,
+        TYPED
+    }
    
 }

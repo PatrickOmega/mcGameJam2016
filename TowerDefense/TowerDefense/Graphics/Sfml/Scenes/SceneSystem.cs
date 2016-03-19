@@ -254,17 +254,37 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             _UIObject[(int)GameState.MainMenu] = new List<SceneObject>();
             var scene = _UIObject[(int)GameState.MainMenu];
 
+
+            // The main menu background.
+            var background = new Image() {
+                Name = "imgBackground",
+                Width = 960,
+                Height = 640,
+                Surface = GetSurface("background")
+            };
+            scene.Add(background);
+
+            // The logo for the game
+            var logo = new Label() {
+                Name = "lblLogo",
+                Width = 960,
+                Height = 100,
+                Caption = "Mc Tower Defense",
+                FontSize = 36
+            };
+            scene.Add(logo);
+
             // The button for picking a stage.
             var stageSelect = new Button() {
                 Name = "cmdStageSelect",
                 Caption = "Stage Select",
-                Left = 100,
-                Top = 100,
+                Left = (960 / 2) - 50,
+                Top = 200,
                 Width = 100,
                 Height = 50,
                 Surface = GetSurface("button")
             };
-            stageSelect.OnMouseDown += Button.cmdStageSelect_MouseDown;
+            stageSelect.OnMouseDown += stageSelect.cmdStageSelect_MouseDown;
             scene.Add(stageSelect);
         }
 
@@ -272,28 +292,50 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             _UIObject[(int)GameState.StageSelect] = new List<SceneObject>();
             var scene = _UIObject[(int)GameState.StageSelect];
 
+            // The main menu background.
+            var background = new Image() {
+                Name = "imgBackground",
+                Width = 960,
+                Height = 640,
+                Surface = GetSurface("background")
+            };
+            scene.Add(background);
+
             // The button for going back to the main menu.
             var backButton = new Button() {
                 Name = "cmdBackButton",
                 Caption = "Return to Main Menu",
-                Left = 100,
-                Top = 100,
+                Left = (960 / 2) - 50,
+                Top = 500,
                 Width = 100,
                 Height = 50,
                 Surface = GetSurface("button")
             };
-            backButton.OnMouseDown += Button.cmdBackButton_MouseDown;
+            backButton.OnMouseDown += backButton.cmdBackButton_MouseDown;
             scene.Add(backButton);
 
+            // Stage one
             var stage1 = new Image() {
+                Name = "stg1",
                 Surface = GetSurface("stage1"),
-                Width = 100,
-                Height = 100,
-                Left = 300,
-                Top = 300
+                Width = 200,
+                Height = 200,
+                Left = 150,
+                Top = 100
             };
-            stage1.OnMouseDown += Button.cmdStage1_MouseDown;
+            stage1.OnMouseDown += stage1.cmdStage1_MouseDown;
             scene.Add(stage1);
+
+            // Stage one text
+            var stage1Label = new Label() {
+                Name = "lblStage1",
+                Left = 150,
+                Width = 200,
+                Top = 310,
+                Caption = "Stage One",
+                FontSize = 24
+            };
+            scene.Add(stage1Label);
         }
     }
 }

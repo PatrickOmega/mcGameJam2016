@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TowerDefense.Data.Models
+﻿namespace TowerDefense.Data.Models
 {
-    class Home
+    public class Home
     {
         public int Health {
             set { this.Health = value; }

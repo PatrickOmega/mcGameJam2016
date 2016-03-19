@@ -1,15 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TowerDefense.Data.Models
+﻿namespace TowerDefense.Data.Models
 {
-    class Board
+    public class Board
     {
-        private Map map;
-        private int Score;
+        public int Score { private set; get; }
+        public int Money { private set; get; }
 
+        private const int STARTING_MONEY = 900;
+
+        public Board() {
+            // When the game starts, you'll have a certain
+            // amount of money, and a score of 0.
+            this.Score = 0;
+            this.Money = STARTING_MONEY;
+        }
+
+        public void AddMoney(int amount) {
+            this.Money += amount;
+        }
+
+        public void RemoveMoney(int amount) {
+            this.Money -= amount;
+            if (this.Money < 0) {
+                this.Money = 0;
+            }
+        }
+
+        public void AddScore(int amount) {
+            this.Score += amount;
+        }
     }
 }

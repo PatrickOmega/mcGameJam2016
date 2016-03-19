@@ -80,7 +80,14 @@ namespace TowerDefense.Graphics.Sfml
             // When the close button is pressed, set the game flag to 'closing' so 
             // the application can begin to close.
             this.DrawingSurface.Closed += (sender, e) => {
-                Game.SetGameFlag(GameFlag.Closing);
+                switch (Game.State) {
+                    case GameState.Game:
+                        Game.SetGameState(GameState.MainMenu);
+                        break;
+                    default:
+                        Game.SetGameFlag(GameFlag.Closing);
+                        break;
+                }
             };
         }
 
