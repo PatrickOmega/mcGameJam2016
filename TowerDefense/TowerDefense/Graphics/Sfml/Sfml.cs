@@ -23,7 +23,7 @@ namespace TowerDefense.Graphics.Sfml
             this.LoadFont();
 
             // Create a new renderwindow that we can render graphics onto.
-            this.DrawingSurface = new RenderWindow(new VideoMode(300, 300), "Title", Styles.Close);
+            this.DrawingSurface = new RenderWindow(new VideoMode(960, 640), "Title", Styles.Close);
 
             // Set the default background color for the drawing surface.
             this._backgroundColor = new Color(25, 25, 25);
@@ -80,7 +80,7 @@ namespace TowerDefense.Graphics.Sfml
             // When the close button is pressed, set the game flag to 'closing' so 
             // the application can begin to close.
             this.DrawingSurface.Closed += (sender, e) => {
-                TowerDefense.SetGameFlag(GameFlag.Closing);
+                Game.SetGameFlag(GameFlag.Closing);
             };
         }
 
@@ -97,10 +97,7 @@ namespace TowerDefense.Graphics.Sfml
         }
 
         private void LoadFont() {
-            // Return early because a default tff file is not included.
-            return;
-
-            string fontFile = GraphicsManager.FontPath + "font.ttf";
+            string fontFile = GraphicsManager.FontPath + "tahoma.ttf";
 
             // Make sure that the ttf file exists.
             if (File.Exists(fontFile)) {

@@ -12,8 +12,8 @@ namespace TowerDefense.Graphics.Sfml.Scenes.Objects
         public GraphicalSurface SurfaceUnchecked;
         public bool Checked;
         public string Caption;
-        public Color TextColor;
-        public uint FontSize;
+        public Color TextColor = SFML.Graphics.Color.Black;
+        public uint FontSize = 12;
 
         public override void Draw() {
             // No call will be made to the base Draw method.

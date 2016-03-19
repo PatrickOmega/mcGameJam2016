@@ -6,11 +6,11 @@ using System;
 
 namespace TowerDefense
 {
-    public static class TowerDefense
+    public static class Game
     {
         // Global variables related to the game.
         public static readonly string StartupPath = AppDomain.CurrentDomain.BaseDirectory;
-        public static readonly string DataPath = TowerDefense.StartupPath + "data\\";
+        public static readonly string DataPath = Game.StartupPath + "data\\";
         public static GameState State { private set; get; }
         public static GameFlag Flag { private set; get; }
 
@@ -30,18 +30,18 @@ namespace TowerDefense
             GraphicsManager.Initialize();
 
             // Start the game-loop.
-            TowerDefense.GameLoop();
+            Game.GameLoop();
         }
 
         private static void GameLoop() {
             int tick = 0, tick16 = 0;
 
             // Mark the game as running, and show the main window.
-            TowerDefense.Flag = GameFlag.Running;
+            Game.Flag = GameFlag.Running;
 
             // Continue to run the game-loop as long as our game
             // is not closing.
-            while (TowerDefense.Flag != GameFlag.Closing) {
+            while (Game.Flag != GameFlag.Closing) {
                 tick = Environment.TickCount;
 
                 // Render graphics up to 60 times a second.
@@ -52,13 +52,15 @@ namespace TowerDefense
             }
 
             // The game will only be destroyed when the flag is set to closing.
-            TowerDefense.Destroy();
+            Game.Destroy();
         }
 
         public static void SetGameState(GameState state) {
             switch (state) {
                 case GameState.MainMenu:
-                    TowerDefense.State = state;
+                case GameState.StageSelect:
+                case GameState.Game:
+                    Game.State = state;
                     break;
                 default:
                     return;
@@ -67,17 +69,17 @@ namespace TowerDefense
 
         public static void SetGameFlag(GameFlag flag) {
             // Make sure we can't change the flag if we're already closing.
-            if (TowerDefense.Flag == GameFlag.Closing) {
+            if (Game.Flag == GameFlag.Closing) {
                 return;
             }
 
-            TowerDefense.Flag = flag;
+            Game.Flag = flag;
         }
 
         private static void Destroy() {
             // Make sure that the game-loop has stopped, and
             // that we didn't call this on accident.
-            if (TowerDefense.Flag != GameFlag.Closing) {
+            if (Game.Flag != GameFlag.Closing) {
                 return;
             }
 
