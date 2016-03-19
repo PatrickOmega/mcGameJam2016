@@ -3,6 +3,8 @@
     public enum GameState
     {
         MainMenu,
+        StageSelect,
+        Game,
         Length
     }
 }

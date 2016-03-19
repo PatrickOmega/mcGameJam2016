@@ -3,7 +3,7 @@
     public static class AudioManager
     {
         // Sound directories.
-        public static readonly string AudioDir = TowerDefense.StartupPath + "audio\\";
+        public static readonly string AudioDir = Game.StartupPath + "audio\\";
         public static readonly string MusicDir = AudioDir + "music\\";
         public static readonly string SoundDir = AudioDir + "sounds\\";
 

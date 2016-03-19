@@ -10,7 +10,7 @@ namespace TowerDefense.IO
             // Create an array of directories to check.
             string[] folders = {
                 // General program directories.
-                TowerDefense.DataPath,
+                Game.DataPath,
 
                 // Directories needed for data.
 
@@ -18,6 +18,7 @@ namespace TowerDefense.IO
                 GraphicsManager.SurfacePath,
                 GraphicsManager.GuiPath,
                 GraphicsManager.FontPath,
+                GraphicsManager.TowerPath,
 
                 // Directories needed for music.
                 AudioManager.AudioDir,

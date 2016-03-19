@@ -3,6 +3,7 @@ using SFML.Graphics;
 using SFML.Window;
 using System.Collections.Generic;
 using System.IO;
+using SFML.System;
 
 namespace TowerDefense.Graphics.Sfml
 {
@@ -23,7 +24,7 @@ namespace TowerDefense.Graphics.Sfml
             this.LoadFont();
 
             // Create a new renderwindow that we can render graphics onto.
-            this.DrawingSurface = new RenderWindow(new VideoMode(300, 300), "Title", Styles.Close);
+            this.DrawingSurface = new RenderWindow(new VideoMode(960, 640), "Title", Styles.Close);
 
             // Set the default background color for the drawing surface.
             this._backgroundColor = new Color(25, 25, 25);
@@ -60,7 +61,6 @@ namespace TowerDefense.Graphics.Sfml
             // Create a new scene system to handle the events.
             this.SceneSystem = new SceneSystem();
 
-
             // For mouse related events, just pass off the coords to the scene system.
             this.DrawingSurface.MouseButtonPressed += (sender, e) => {
                 this.SceneSystem.MouseDown(e.Button.ToString().ToLower(), e.X, e.Y);
@@ -80,7 +80,14 @@ namespace TowerDefense.Graphics.Sfml
             // When the close button is pressed, set the game flag to 'closing' so 
             // the application can begin to close.
             this.DrawingSurface.Closed += (sender, e) => {
-                TowerDefense.SetGameFlag(GameFlag.Closing);
+                switch (Game.State) {
+                    case GameState.Game:
+                        Game.SetGameState(GameState.MainMenu);
+                        break;
+                    default:
+                        Game.SetGameFlag(GameFlag.Closing);
+                        break;
+                }
             };
         }
 
@@ -94,13 +101,13 @@ namespace TowerDefense.Graphics.Sfml
             }
 
             // From this point onward, load graphics into their respective collections.
+            foreach (string file in Directory.GetFiles(GraphicsManager.TowerPath, "*.png")) {
+                this._surface[(int)SurfaceTypes.Tower].Add(new GraphicalSurface(file));
+            }
         }
 
         private void LoadFont() {
-            // Return early because a default tff file is not included.
-            return;
-
-            string fontFile = GraphicsManager.FontPath + "font.ttf";
+            string fontFile = GraphicsManager.FontPath + "tahoma.ttf";
 
             // Make sure that the ttf file exists.
             if (File.Exists(fontFile)) {
@@ -194,6 +201,28 @@ namespace TowerDefense.Graphics.Sfml
             return -1;
         }
         #endregion
+
+
+        private void RenderSample_DO_NOT_USE_THIS() {
+            // Load a surface of a certain type
+            var surface = GetSurface("generic", SurfaceTypes.Tower);
+
+            // Set the position on the screen.
+            surface.Position = new Vector2f(100, 100);
+
+            // Resize the surface.
+            surface.Scale = new Vector2f(1, 1);
+
+            // Rotate the surface.
+            surface.Rotation = 1.0f;
+
+            // Set a color overlay on the surface.
+            surface.Color = Color.Green;
+
+            // Draw the surface.
+            DrawObject(surface);
+        }
+
 
         private void DrawGame() {
             // All logic pertaining to drawing the game goes here.

@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TowerDefense.Data.Models.Towers
+﻿namespace TowerDefense.Data.Models.Towers
 {
-    public enum TowerDamageType { SINGLE, SPLASH}
-   
+    public enum TowerDamageType {
+        SINGLE,
+        SPLASH
+    }
 }

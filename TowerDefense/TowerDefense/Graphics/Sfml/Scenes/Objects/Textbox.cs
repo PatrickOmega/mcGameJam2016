@@ -7,8 +7,8 @@ namespace TowerDefense.Graphics.Sfml.Scenes.Objects
     public class Textbox : SceneObject
     {
         public string Text = string.Empty;
-        public Color TextColor;
-        public uint FontSize;
+        public Color TextColor = SFML.Graphics.Color.Black;
+        public uint FontSize = 12;
         public int MaxLength;
         public char PasswordChar;
 

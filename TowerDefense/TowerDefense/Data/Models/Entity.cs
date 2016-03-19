@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TowerDefense.Data.Models
+﻿namespace TowerDefense.Data.Models
 {
-    class Entity: Position.Position
+    public class Entity: Position
     {
-        private int health;
+        public int Health { private set; get; }
+
+        // Method for damaging entities.
+        public void Damage(int amount) {
+            this.Health -= amount;
+            if (amount < 0) {
+                this.Health = 0;
+            }
+        }
+
+        // Method for healing entities.
+        public void Heal(int amount) {
+            this.Health += amount;
+        }
     }
 }

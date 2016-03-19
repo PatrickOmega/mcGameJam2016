@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using TowerDefense.Graphics.Sfml.Scenes.Objects;
 
 namespace TowerDefense.Graphics.Sfml.Scenes
 {
@@ -64,11 +65,11 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             // Make sure that we actually initialized the scene system.
             if (this._UIObject != null) {
                 // Make sure that we actually have scene objects in our current state.
-                if (this._UIObject[(int)TowerDefense.State] != null) {
+                if (this._UIObject[(int)Game.State] != null) {
                     // Loop through all possible values for the ZOrder.
                     for (int z = ZOrder.GetHighZ(); z >= 0; z--) {
                         // Loop through every scene object we have in our current state.
-                        foreach (var obj in this._UIObject[(int)TowerDefense.State]) {
+                        foreach (var obj in this._UIObject[(int)Game.State]) {
                             // Does the object's ZIndex match the ZOrder?
                             if (obj.Z == z) {
                                 // Is the object visible?
@@ -136,11 +137,11 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             // Make sure that the scene system has actually been initialized.
             if (this._UIObject != null) {
                 // Make sure that we actually have scene objects in our current state.
-                if (this._UIObject[(int)TowerDefense.State] != null) {
+                if (this._UIObject[(int)Game.State] != null) {
                     // Loop through every possible ZOrder value.
                     for (int z = ZOrder.GetHighZ(); z >= 0; z--) {
                         // Loop through all the scene objects in our current state.
-                        foreach (var obj in this._UIObject[(int)TowerDefense.State]) {
+                        foreach (var obj in this._UIObject[(int)Game.State]) {
                             // Does the ZIndex match the ZOrder?
                             if (obj.Z == z) {
                                 // Make sure that the object is visible.
@@ -201,9 +202,9 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             // Make sure that we've actually loaded the scene system.
             if (this._UIObject != null) {
                 // Make sure we actually have scene objects in our current state.
-                if (this._UIObject[(int)TowerDefense.State] != null) {
+                if (this._UIObject[(int)Game.State] != null) {
                     // Draw every object in this scene if it's visible.
-                    foreach (var obj in this._UIObject[(int)TowerDefense.State]) {
+                    foreach (var obj in this._UIObject[(int)Game.State]) {
                         if (obj.Visible) {
                             obj.Draw();
                         }
@@ -228,9 +229,9 @@ namespace TowerDefense.Graphics.Sfml.Scenes
             // Make sure that we actually initialized the scene system.
             if (this._UIObject != null) {
                 // Make sure we actually have scene objects in our current state.
-                if (this._UIObject[(int)TowerDefense.State] != null) {
+                if (this._UIObject[(int)Game.State] != null) {
                     // Loop through all the scene objects in our current state.
-                    foreach (var obj in this._UIObject[(int)TowerDefense.State]) {
+                    foreach (var obj in this._UIObject[(int)Game.State]) {
                         // If the object has the same name as the one specified, return it.
                         if (obj.Name == name.ToLower()) {
                             return obj;
@@ -245,7 +246,96 @@ namespace TowerDefense.Graphics.Sfml.Scenes
         #endregion
 
         private void LoadSceneObjects() {
+            LoadMainMenu();
+            LoadStageSelect();
+        }
 
+        private void LoadMainMenu() {
+            _UIObject[(int)GameState.MainMenu] = new List<SceneObject>();
+            var scene = _UIObject[(int)GameState.MainMenu];
+
+
+            // The main menu background.
+            var background = new Image() {
+                Name = "imgBackground",
+                Width = 960,
+                Height = 640,
+                Surface = GetSurface("background")
+            };
+            scene.Add(background);
+
+            // The logo for the game
+            var logo = new Label() {
+                Name = "lblLogo",
+                Width = 960,
+                Height = 100,
+                Caption = "Mc Tower Defense",
+                FontSize = 36
+            };
+            scene.Add(logo);
+
+            // The button for picking a stage.
+            var stageSelect = new Button() {
+                Name = "cmdStageSelect",
+                Caption = "Stage Select",
+                Left = (960 / 2) - 50,
+                Top = 200,
+                Width = 100,
+                Height = 50,
+                Surface = GetSurface("button")
+            };
+            stageSelect.OnMouseDown += stageSelect.cmdStageSelect_MouseDown;
+            scene.Add(stageSelect);
+        }
+
+        private void LoadStageSelect() {
+            _UIObject[(int)GameState.StageSelect] = new List<SceneObject>();
+            var scene = _UIObject[(int)GameState.StageSelect];
+
+            // The main menu background.
+            var background = new Image() {
+                Name = "imgBackground",
+                Width = 960,
+                Height = 640,
+                Surface = GetSurface("background")
+            };
+            scene.Add(background);
+
+            // The button for going back to the main menu.
+            var backButton = new Button() {
+                Name = "cmdBackButton",
+                Caption = "Return to Main Menu",
+                Left = (960 / 2) - 50,
+                Top = 500,
+                Width = 100,
+                Height = 50,
+                Surface = GetSurface("button")
+            };
+            backButton.OnMouseDown += backButton.cmdBackButton_MouseDown;
+            scene.Add(backButton);
+
+            // Stage one
+            var stage1 = new Image() {
+                Name = "stg1",
+                Surface = GetSurface("stage1"),
+                Width = 200,
+                Height = 200,
+                Left = 150,
+                Top = 100
+            };
+            stage1.OnMouseDown += stage1.cmdStage1_MouseDown;
+            scene.Add(stage1);
+
+            // Stage one text
+            var stage1Label = new Label() {
+                Name = "lblStage1",
+                Left = 150,
+                Width = 200,
+                Top = 310,
+                Caption = "Stage One",
+                FontSize = 24
+            };
+            scene.Add(stage1Label);
         }
     }
 }
