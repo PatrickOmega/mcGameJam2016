@@ -64,6 +64,9 @@ namespace TowerDefense.Graphics.Sfml.Scenes.Objects
                     }
                     break;
             }
+
+            // Call the base class's handling.
+            this.OnKeyDown(key);
         }
 
         public override string GetStringValue(string key) {
